@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no,width=device-width">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Привет, мир!</title>
+
+    <style>
+
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            user-select: none;
+            justify-content: center;
+        }
+        
+        .popup .popuptext {
+            visibility: hidden;
+            width: 95%;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 3;
+            bottom: 70%;
+            left: -10%;
+            margin-left: 80px;
+        }
+        
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        
+        .popup .show {
+            visibility: visible;
+            animation: fadeIn 1s;
+        }
+
+        .popup .hide {
+            visibility: visible;
+            animation: fadeOut 1s;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 10px;
+            padding-top: 0px;
+            width: 500px;
+           
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: right;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            background-color: #d3d3d3;
+            color: white;
+          }
+
+      body {
+          margin: 0px;
+          padding: 0px;
+          overflow-x: hidden; /* Для предотвращения горизонтального прокручивания */
+          align-content: center;
+          width: 100%;
+          background-color: white;
+      }
+
+      .circle {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: normal;
+            word-wrap: break-word;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+      .circle-text {
+            max-width: 150px;
+        }
+
+      .parallax {
+          height: 85vh;
+          position: relative;
+          overflow: hidden;
+      }
+
+      .parallax::before {
+          content: "";
+     
+          background-image: url("imagess/04.jpg");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0.8;
+          z-index: -1;
+      }
+
+      .overlay0 {
+          position: absolute;
+          top: 5%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+          
+          
+      }
+      
+      .overlay {
+          position: absolute;
+          top: 20%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+          
+          
+      }
+
+      .overlay1 {
+          position: absolute;
+          top: 45%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+          width: 80%;
+          min-width: 545px;
+          
+      }
+
+ 
+      .content {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          padding: 20px;
+          color: white;
+          font-size: 24px;
+      }
+
+      .content1 {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          padding: 20px;
+          color: rgb(0, 0, 0);
+          background-color: white;
+          font-size: 24px;
+          
+      }
+      
+      .image00 {
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+      }
+
+      .image000 {
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+      }
+
+      .image01 {
+          background-image: url("imagess/05.jpg");
+      }
+
+      .image02 {
+          background-image: url("imagess/06.jpg");
+      }
+
+      .image03 {
+          background-image: url("imagess/07.jpg");
+      }
+
+      .image04 {
+          background-image: url("imagess/08.jpg");
+      }
+
+      .image05 {
+          background-image: url("imagess/09.jpg");
+      }
+
+      .image06 {
+          background-image: url("imagess/10.jpg");
+      }
+
+      .image07 {
+          background-image: url("imagess/11.jpg");
+      }
+
+      .image08 {
+          background-image: url("imagess/01.png");
+      }
+
+      .image09 {
+          background-image: url("imagess/02.png");
+      }
+
+      .image10 {
+          background-image: url("imagess/03.png");
+      }
+
+      .container {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .container-fluid {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        flex-wrap: wrap;
+      }
+
+      .row .col .col-md{
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        flex-wrap: wrap;
+      }
+
+      h1 {
+      font-family: 'Playfair Display', serif !important;
+      font-weight: 700;
+      font-size: 3.75rem;
+      margin: 120px 106px 0;
+      word-wrap: break-word;
+      position: relative;
+      }
+
+      .h5_cust {
+        font-size: 1.1rem;
+        font-weight: 400;
+        max-width: 700px;
+        margin-top: 25px;
+      }
+
+      h6 {
+        word-wrap: break-word;
+        position: relative;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-weight: 350;
+        margin: 60px auto 0;
+        font-size: 1.125rem;
+        line-height: 1.2;
+        display: table;
+        color: inherit;
+        
+      }
+
+      b {
+        font-weight: 800;
+      }
+
+      @media (max-width: 1200px) {
+             h1 {
+                font-family: 'Playfair Display', serif !important;
+                font-weight: 700;
+                font-size: 2.25rem;
+                margin: 120px 106px 0;
+                word-wrap: break-word;
+                position: relative;
+              }
+             .h5_cust {
+                font-size: .7rem;
+                font-weight: 400;
+                max-width: 700px;
+                margin-top: 25px;
+              }
+        }
+
+        .counter {
+            font-size: 2em;
+            color: #333;
+
+            font-family: 'Playfair Display', serif !important;
+            font-weight: 700;
+            font-size: 3.75rem;
+            margin: 0 auto 0;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        a {
+          text-decoration: none;
+        }
+
+
+        #menu {
+            position: fixed;
+            top: 0;
+            left: -280px; /* начальное смещение за пределы экрана */
+            width: 280px; /* ширина меню с учетом 20px черной полосы и 20px отступа */
+            height: 100%;
+            opacity: 100%;
+            background-color: rgb(250, 250, 250); /* черный фон меню */
+            transition: left 0.2s; /* плавное появление и исчезание меню */
+            z-index: 100; /* меню поверх всей страницы */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        #menu.open {
+            left: 0; /* показываем меню при смещении влево на 0 пикселей */
+            opacity: 100%;
+        }
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 45px; /* ширина черной полосы меню */
+            height: 100%;
+            background-color: #000; /* черный фон меню */
+            z-index: 80; /* поверх всей страницы */
+            opacity: 15%;
+        }
+        .button_open_close {
+            position: absolute;
+            top: 0px;
+            right: -6px; /* сдвигаем на 20px вправо (ширина кнопки) */
+            background-color: transparent;
+            color: rgb(207, 207, 207);
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: color 0.5s;
+        }
+
+        .button_open_close:hover {
+            color: black;
+
+        }
+
+
+
+  </style>
+
+
+
+  </head>
+  <body>
+
+
+      <div id="menu" class="menu-bar">
+      <button id="closeButton" class="button_open_close" style="display: none">х</button>
+      <h2>Меню</h2>
+      <ul>
+          <li><a href="#sect_01">О НАШЕЙ СТУДИИ</a></li>
+          <li><a href="#sect_02">СОБЫТИЯ</a></li>
+          <li><a href="#sect_03">ОТЗЫВЫ КЛИЕНТОВ</a></li>
+          <li><a href="#sect_04">НАШИ УСЛУГИ</a></li>
+          <li><a href="#sect_05">КОНТАКТЫ</a></li>
+
+      </ul>
+  </div>
+
+  <div id="menuButton" class="menu-bar">
+      <button id="openButton" class="button_open_close">☰</button>
+  </div>
+
+ <!-- Модальное окно с видео -->
+ <div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <video id="videoPlayer" controls>
+        <source src="imagess/001.MP4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+    <div class="parallax"></div>
+    <!-- <div class="overlay0">
+        <img src="images/default-logo.png" alt="Второе изображение" style="background-position: center">
+    </div> -->
+    <div class="overlay">
+        <img src="imagess/logo.png" style="scale: .4;" alt="Второе изображение">
+    </div>
+    <div class="overlay1">
+      <div class="content">
+        <h1 style="color: rgb(37, 38, 42)">Шаг к идеальному блеску вашего автомобиля</h1>
+        <h5 class="mx-auto h5_cust" style="font-size: large;   color: rgb(0, 0, 0)">Мы создаем идеальный вид вашего автомобиля с любовью к деталям. Каждая деталь заставит автомобиль сиять великолепием. Ваш автомобиль заслуживает быть идеальным, и мы вам поможем достичь этого.</h5>
+      </div>
+    </div>
+
+    <!-- Дополнительное содержимое страницы -->
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var parallax = document.querySelector('.parallax');
+            var scrolled = window.pageYOffset;
+            parallax.style.transform = 'translateY(' + (scrolled * 0.5) + 'px)';
+        });
+
+
+        document.getElementById('openButton').addEventListener('click', function() {
+            document.getElementById('menu').classList.add('open');
+            document.getElementById('openButton').style.display = 'none';
+            document.getElementById('closeButton').style.display = 'block';
+        });
+
+        document.getElementById('closeButton').addEventListener('click', function() {
+            document.getElementById('menu').classList.remove('open');
+            document.getElementById('openButton').style.display = 'block';
+            document.getElementById('closeButton').style.display = 'none';
+        });
+
+
+        // Функция анимации счетчиков
+
+        function animateCounter(from, to, duration, elementId) {
+            let start = performance.now();
+            requestAnimationFrame(function updateCounter(timestamp) {
+                let progress = timestamp - start;
+                let value = Math.floor((to - from) * (progress / duration) + from);
+                document.getElementById(elementId).textContent = value;
+                if (progress < duration) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    document.getElementById(elementId).textContent = to;
+                }
+            });
+        }
+
+        //Функция запуска счетчиков при скроллинге вниз и отображении счетчиков на экране
+
+        let countersDisplayed = false;
+        window.addEventListener('scroll', function() {
+            let counters = document.getElementById('counter1');
+            let positionFromTop = counters.getBoundingClientRect().top;
+            let windowHeight = window.innerHeight;
+            if (positionFromTop - windowHeight <= 0 && !countersDisplayed) {
+                counters.style.opacity = 1;
+                animateCounter(0, 105, 5000, 'counter1');
+                animateCounter(0, 650, 7000, 'counter2');
+                animateCounter(0, 1590, 9000, 'counter3');
+                countersDisplayed = true;
+            }
+            if (positionFromTop - windowHeight > 0) {
+                countersDisplayed = false;
+            }
+        });
+
+    </script>
+
+
+    <div class="container-fluid content1">
+        
+        <div class="container-fluid" id="sect_01">
+            <div class="row">
+                <div class="col">
+                    <h6 class="text-center">О НАШЕЙ СТУДИИ</h6>
+                    <!-- Кнопка для открытия модального окна -->
+                    <button id="openModal" class="mx-auto btn btn-outline-dark btn-lg" style="max-width: 250px;">Открыть видео</button>
+                </div>
+            </div>
+            <div class="row" style="justify-content: center;">
+                <div class="col" style="max-width: 1200px; padding-bottom: 70px; justify-content: center;">
+                    <h1 style="font-weight: 200; font-size: 3rem; margin-left: 0%; margin-right: 0%; margin-top: 25px;">
+                      Уникальный <i><b>детейлинг-центр в самом сердце города</b></i>, где вашему автомобилю предоставят высококлассный уход наши опытные специалисты. <i><b>Вас ждет прекрасная атмосфера.</b></i>
+                      
+                </div>
+            </div>
+        </div>
+    
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md image01 image00">
+                <div class="ratio ratio-16x9"></div>
+            </div>
+              <div class="col-md">
+                <h6>ИСТОРИЯ</h6>
+                <h1 class="mx-auto" style="margin-top: 10px; font-size: 1.8rem; font-weight: 300; max-width: 450px; letter-spacing: -1px;">Удивительная история возникновения идеального внешнего вида автомобиля</h1>
+                <p class="lead fw-normal mx-auto" style="font-size: 0.8rem;">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              </div>
+              <div class="col-md image02 image00">
+                <div class="ratio ratio-16x9"></div>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-md">
+                <h6>СООБЩЕСТВО</h6>
+                <h1 class="mx-auto" style="margin-top: 10px; font-size: 1.8rem; font-weight: 300; max-width: 450px; letter-spacing: -1px;">Идеальный вид автомобиля в социальных сетях – с нами интересно</h1>
+                <p class="lead fw-normal mx-auto" style="font-size: 0.8rem;">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              </div>
+              <div class="col-md image03 image00">
+                <div class="ratio ratio-16x9"></div>
+            </div>
+              <div class="col-md">
+                <h6 >ФИЛОСОФИЯ</h6>
+                <h1 class="mx-auto" style="margin-top: 10px; font-size: 1.8rem; font-weight: 300; max-width: 450px; letter-spacing: -1px;">Только лучший уход, лучшие специалисты, лучшие результаты</h1>
+                <p class="lead fw-normal mx-auto" style="font-size: 0.8rem;">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid" id="sect_02">
+            <div class="row">
+              <div class="col">
+                <h6 class="text-center">СОБЫТИЯ</h6>
+              </div>
+                <div class="row">
+                    <div class="col">
+                      <h1 style="font-weight: 200; font-size: 3.3rem; margin-left: 0%; margin-right: 0%; margin-top: 30px; letter-spacing: -1px;"><b>Новости и события в мире детейлинга</b></h1>
+                  </div>
+                </div>
+            </div>
+          </div>  
+        <div class="container-fluid">
+            <div class="row mx-auto" style="max-width: 1200px;">
+                <div class="col-md">
+                    <h2 style="margin-top: 50px; font-size: 3rem;">25</h1>
+                    <h6 style="margin-top: 0px;">АПРЕЛЬ</h6>
+                    <p class="lead fw-normal text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+                  <div class="col-md">
+                    <h2 style="margin-top: 50px; font-size: 3rem;">15</h1>
+                    <h6 style="margin-top: 0px;">МАЙ</h6>
+                    <p class="lead fw-normal text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+                  <div class="col-md">
+                    <h2 style="margin-top: 50px; font-size: 3rem;">19</h1>
+                    <h6 style="margin-top: 0px;">ИЮНЬ</h6>
+                    <p class="lead fw-normal text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+            </div>
+            <div class="d-grid col-3 mx-auto">
+                <button type="button" class="mx-auto btn btn-outline-dark btn-lg" style="max-width: 150px;">Читать еще</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div style="width: 100%; height: 70vh; padding: 0px; margin: 0px; object-fit: cover;">
+
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              
+            </div>
+            <div class="carousel-inner" id="sect_03">
+              <div class="carousel-item active">
+                <img src="imagess/12.jpg" class="d-block w-100" style="height: 70vh;  object-fit: cover; padding-top: 50px;">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="display-16 fw-normal text-center">ОТЗЫВЫ КЛИЕНТОВ</h5>
+                  <h1 class="display-5 lead fw-bold text-center">Эксклюзивный центр детейлинга в центре города, где ваш автомобиль получит исключительный уход от опытных специалистов. Приятная атмосфера включена в стоимость.</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="imagess/13.jpg" class="d-block w-100" style="height: 70vh; object-fit: cover;  position: relative; padding-top: 50px;">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="display-16 fw-normal text-center">ОТЗЫВЫ КЛИЕНТОВ</h5>
+                  <h1 class="display-5 lead fw-bold text-center">Впечатлен качеством покраски колесных дисков и полировки фар в вашем центре детейлинга. Мой автомобиль выглядит как новый, спасибо за отличную работу!</p>
+                </div>
+              </div>
+          
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Предыдущий</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Следующий</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="sect_04">
+      <div class="row">
+          <div class="col">
+            <h6>Наши услуги</h6>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col">
+            <h1 style="font-weight: 200; font-size: 3.3rem; margin-left: 0%; margin-right: 0%; margin-top: 30px; letter-spacing: -1px;"><b>Прекрасный результат от профессионалов</b></h1>
+          </div>
+      </div>
+      <div class="container-fluid mx-auto" style="max-width: 1200px;">
+        <div class="row">
+          <div class="col-md popup" onmouseover="myFunction(1, 'myPopup1')" onmouseleave="myFunction(0, 'myPopup1')">
+            <span class="popuptext" id="myPopup1">У нас открылась новая точка выдачи товаров и запчастей. Для вашего удобства обустроена парковка на 10 автомобилей, навесы для небольшого ремонта, указатели к точке выдачи. Рядом расположены шиномонтаж и мойка самообслуживания.</span>
+            <h6 class="text-center">Полировка фар / от 2000 р.</h6>
+            <p class="lead fw-normal  mx-auto" style="max-width: 500px; font-size: 1rem;">Доверьте нам свои фары, и они снова станут ясными и блестящими, обеспечивая отличную видимость и безопасность во время вождения.</p>
+          </div>
+          <div class="col-md popup" onmouseover="myFunction(1, 'myPopup2')" onmouseleave="myFunction(0, 'myPopup2')">
+            <span class="popuptext" id="myPopup2">У нас открылась новая точка выдачи товаров и запчастей. Для вашего удобства обустроена парковка на 10 автомобилей, навесы для небольшого ремонта, указатели к точке выдачи. Рядом расположены шиномонтаж и мойка самообслуживания.</span>
+            <h6 class="text-center">Устранение вмятин / от 3500 р.</h6>
+            <p class="lead fw-normal mx-auto" style="max-width: 500px; font-size: 1rem;">Мы используем передовые методы и инструменты Paintless Dent Repair (PDR), чтобы эффективно и без повреждения краски устранить вмятины на кузове.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md popup" onmouseover="myFunction(1, 'myPopup3')" onmouseleave="myFunction(0, 'myPopup3')">
+            <span class="popuptext" id="myPopup3">У нас открылась новая точка выдачи товаров и запчастей. Для вашего удобства обустроена парковка на 10 автомобилей, навесы для небольшого ремонта, указатели к точке выдачи. Рядом расположены шиномонтаж и мойка самообслуживания.</span>
+            <h6 class="text-center">Локальная подкраска / от 500 р.</h6>
+              <p class="lead fw-normal mx-auto" style="max-width: 500px; font-size: 1rem;">Наша услуга локальной подкраски предлагает профессиональное восстановление внешнего вида вашего автомобиля путем устранения мелких царапин, сколов и повреждений на кузове.</p>
+          </div>
+          <div class="col-md popup" onmouseover="myFunction(1, 'myPopup4')" onmouseleave="myFunction(0, 'myPopup4')">
+            <span class="popuptext" id="myPopup4">У нас открылась новая точка выдачи товаров и запчастей. Для вашего удобства обустроена парковка на 10 автомобилей, навесы для небольшого ремонта, указатели к точке выдачи. Рядом расположены шиномонтаж и мойка самообслуживания.</span>
+            <h6 class="text-center">Полировка кузова / от 35000 р.</h6>
+              <p class="lead fw-normal mx-auto" style="max-width: 500px; font-size: 1rem;">Наши опытные специалисты используют высококачественные полировочные материалы и технологии, чтобы восстановить блеск и глубокий цвет кузова.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md popup" onmouseover="myFunction(1, 'myPopup5')" onmouseleave="myFunction(0, 'myPopup5')">
+            <span class="popuptext" id="myPopup5">У нас открылась новая точка выдачи товаров и запчастей. Для вашего удобства обустроена парковка на 10 автомобилей, навесы для небольшого ремонта, указатели к точке выдачи. Рядом расположены шиномонтаж и мойка самообслуживания.</span>
+            <h6 class="text-center">Оклейка пленкой / от 7500 р.</h6>
+              <p class="lead fw-normal mx-auto" style="max-width: 500px; font-size: 1rem;">Мы используем высококачественные защитные пленки, которые не только сохраняют внешний вид автомобиля, но и обеспечивают долгосрочную защиту кузова от внешних воздействий.</p>
+          </div>
+          <div class="col-md popup" onmouseover="myFunction(1, 'myPopup6')" onmouseleave="myFunction(0, 'myPopup6')">
+            <span class="popuptext" id="myPopup6">У нас открылась новая точка выдачи товаров и запчастей. Для вашего удобства обустроена парковка на 10 автомобилей, навесы для небольшого ремонта, указатели к точке выдачи. Рядом расположены шиномонтаж и мойка самообслуживания.</span>
+            <h6 class="text-center">Нанесение керамики / от 15500 р.</h6>
+              <p class="lead fw-normal mx-auto" style="max-width: 500px; font-size: 1rem;">Наша команда профессионалов предлагает услугу нанесения керамического покрытия, которое создаст невидимую защиту для вашего автомобиля.</p>
+          </div>
+        </div>
+      </div>
+
+      
+  </div>
+  
+  <div class="row" style="height: 10vh;">
+    <div class="col-md image00"></div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md image04 image00" style="height: 60vh;"></div>
+      <div class="col-md">
+        
+        <div class="row">
+          <div class="col image05 image00" style="height: 30vh;"></div>
+        </div>
+          
+        <div class="row">
+          <div class="col-md image06 image00" style="height: 30vh;"></div>
+          <div class="col-md image07 image00" style="height: 30vh;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row" style="height: 12vh;">
+      <div class="col-md image00"></div>
+    </div>
+
+    <div class="row mx-auto" style="max-width: 1200px;">
+
+      <div class="col-md">
+        <div class="image08 image000" style="height: 70px;"></div>
+          <div class="counter" id="counter1">0</div>
+          <h6 class="mx-auto" style="margin: 2vh;">КУЗОВОВ ОБРАБОТАНО</h6>
+      </div>
+
+      <div class="col-md">
+        <div class="image09 image000" style="height: 70px;"></div>
+        <div class="counter" id="counter2">0</div>
+          <h6 class="mx-auto" style="margin: 2vh;">ДИСКОВ ОКРАШЕНО</h6>
+      </div>
+
+      <div class="col-md">
+        <div class="image10 image000" style="height: 70px;"></div>
+        <div class="counter" id="counter3">0</div>
+          <h6 class="mx-auto" style="margin: 2vh;">ФАР ОТПОЛИРОВАНО</h6>
+      </div>
+
+      <div class="col-md image000">
+          <div class="circle mx-auto">
+            <div class="circle-text">МЫ РАБОТАЕМ КАЖДЫЙ ДЕНЬ!</div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row" style="height: 12vh;">
+    <div class="col-md image00"></div>
+  </div>
+
+  <div class="container-fluid" id="sect_05">
+    <div class="row">
+      <div class="col">
+          <h6>НАШИ КОНТАКТЫ</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1 style="font-weight: 200; font-size: 3.3rem; margin-left: 0%; margin-right: 0%; margin-top: 30px; letter-spacing: -1px;"><b>Свяжитесь с нами</b></h1>
+      </div>
+    </div>
+  </div>
+ 
+  <form class="mx-auto" style="max-width: 600px;">
+    <div class="mb-3">
+      <label for="exampleInputName1" class="form-label">Введите ваше имя</label>
+      <input type="name" class="form-control" id="exampleInputName1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email-адрес</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">Мы никому не передаем ваш еmail-адрес.</div>
+    </div>
+        <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Я принимаю Условия обслуживания</label>
+    </div>
+    <div class="mx-auto" style="width: 150px;">
+      <button type="submit" class="btn btn-primary" style="background-color: grey; border-radius: 0px; width: 150px; border-color: none;">Отправить</button>
+    </div>
+  </form>
+
+  <div class="row" style="height: 12vh;">
+    <div class="col-md image00"></div>
+  </div>
+
+
+  <div class="row" style="height: 25vh; background-color: dimgray;">
+    <div class="mx-auto" style="width: 450px; text-align: center;">
+      <p class="lead fw-normal" style="font-size: 0.8rem; margin-top: 4vh;  font-weight: 800;">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+    </div>
+  </div>
+
+  <div class="row" style="height: 3vh; background-color: dimgray;">
+    <div class="mx-auto" style="width: 450px; text-align: center;">
+      <p class="lead fw-normal" style="font-size: 0.8rem; font-weight: 800;">Работу выполнил <b>Александр Плющев</b></p>
+    </div>
+  </div>
+
+<script>
+  function myFunction(n, name_popup) {
+      var popup = document.getElementById(name_popup);
+      if (n==1) {
+          popup.classList.remove("hide");
+          popup.classList.add("show");
+      }
+      if (n==0) {
+          popup.classList.remove("show");
+          popup.classList.add("hide");
+          setTimeout(() => {
+              popup.classList.remove("hide");
+          }, 100);
+  
+      }
+ 
+  }
+</script>
+
+
+
+
+<script>
+  // Открыть модальное окно при нажатии на кнопку
+  document.getElementById('openModal').addEventListener('click', function() {
+      var video = document.getElementById('videoPlayer');
+      video.play(); // Воспроизведение видео
+      document.getElementById('modal').style.display = 'block';
+  });
+
+  // Закрыть модальное окно при нажатии на крестик
+  document.getElementById('closeModal').addEventListener('click', function() {
+      var video = document.getElementById('videoPlayer');
+      video.pause(); // Останавливаем воспроизведение видео
+      document.getElementById('modal').style.display = 'none';
+  });
+
+  // Закрыть модальное окно при клике вне его области
+  window.onclick = function(event) {
+      if (event.target == document.getElementById('modal')) {
+          var video = document.getElementById('videoPlayer');
+          video.pause(); // Останавливаем воспроизведение видео
+          document.getElementById('modal').style.display = 'none';
+      }
+  };
+
+</script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
